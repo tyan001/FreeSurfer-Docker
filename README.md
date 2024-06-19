@@ -11,6 +11,8 @@ Docker is a set of platform as a service products that use OS-level virtualizati
 
 More on Docker: https://www.docker.com/
 
+Can find Ubuntu image here for Docker: https://hub.docker.com/r/tyan001/freesurfers
+
 ## How to use this repository?
 1. Clone this repository.
 2. Build the Docker image.
