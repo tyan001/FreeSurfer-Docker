@@ -1,5 +1,7 @@
 FROM ubuntu:22.04
 
+# This Dockerfile makes a FreeSurfer 7.4.1 image using Ubuntu 22.04.
+# You would need to get the Ubuntu 22.04 image from Dockerhub.
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
@@ -17,11 +19,15 @@ RUN apt-get update && \
         libsm6 \
         libxrender1 \
         libxmu6 \
+        python3 \
+        python3-pip \
+        curl \
+        unzip \
         gfortran && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /root
+WORKDIR /workspace
 
 RUN wget --progress=bar:force:noscroll --no-check-certificate https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer-linux-ubuntu22_amd64-7.4.1.tar.gz -O fs.tar.gz && \
     tar --no-same-owner -xzvf fs.tar.gz && \
@@ -46,4 +52,7 @@ ENV PATH=/usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/f
     MNI_DATAPATH=/usr/local/freesurfer/mni/data \
     MNI_PERL5LIB=/usr/local/freesurfer/mni/share/perl5 \
     PERL5LIB=/usr/local/freesurfer/mni/share/perl5
+
+CMD ["/bin/bash"]
+
 
