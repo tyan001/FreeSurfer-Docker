@@ -1,11 +1,12 @@
-FROM ubuntu:22.04
+FROM ubuntu:jammy
 
 # This Dockerfile makes a FreeSurfer 7.4.1 image using Ubuntu 22.04.
 # You would need to get the Ubuntu 22.04 image from Dockerhub.
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get upgrade -y && \
+    apt-get install -y \
         bc \
         libgomp1 \
         perl \
@@ -53,7 +54,17 @@ ENV PATH=/usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/f
     MNI_PERL5LIB=/usr/local/freesurfer/mni/share/perl5 \
     PERL5LIB=/usr/local/freesurfer/mni/share/perl5
 
+# Create non-root user
+RUN useradd -m -s /bin/bash freesurfer
 
+# Set ownership of FreeSurfer directory
+# RUN chown -R freesurfer:freesurfer /usr/local/freesurfer
+
+# Switch to non-root user
+USER freesurfer
+
+# Set working directory
+WORKDIR /home/freesurfer
     
 CMD ["/bin/bash"]
 

@@ -1,4 +1,4 @@
-FROM ubuntu:jammy-20240911.1
+FROM ubuntu:jammy
 
 
 # This Dockerfile is if you want to create a FS7 container image that includes the hippocampus segmentation tool as one image.
@@ -54,8 +54,6 @@ ENV PATH=/usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/f
     PERL5LIB=/usr/local/freesurfer/mni/share/perl5
 
 RUN fs_install_mcr R2019b
-
-
 
 # Create non-root user
 RUN useradd -m -s /bin/bash freesurfer
