@@ -4,9 +4,9 @@ ENV FSLDIR=/usr/local/fsl
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=en_GB.UTF-8
 
-RUN apt update  -y && \
-    apt upgrade -y && \
-    apt install -y    \
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y    \
     python3         \
     python3-pip     \
     wget            \
@@ -17,7 +17,7 @@ RUN apt update  -y && \
     libquadmath0    \
     libgtk2.0-0     \
     firefox         \
-    libgomp1        \
+    libgomp1     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
