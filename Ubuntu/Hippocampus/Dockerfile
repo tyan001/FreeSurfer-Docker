@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:jammy-20240911.1
 
 
 # This Dockerfile is if you want to create a FS7 container image that includes the hippocampus segmentation tool as one image.
@@ -6,7 +6,8 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get upgrade -y && \
+    apt-get install -y \
         bc \
         libgomp1 \
         perl \
@@ -27,8 +28,6 @@ RUN apt-get update && \
         gfortran && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-WORKDIR /workspace
 
 RUN wget --progress=bar:force:noscroll --no-check-certificate https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.4.1/freesurfer-linux-ubuntu22_amd64-7.4.1.tar.gz -O fs.tar.gz && \
     tar --no-same-owner -xzvf fs.tar.gz && \
@@ -55,6 +54,24 @@ ENV PATH=/usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/f
     PERL5LIB=/usr/local/freesurfer/mni/share/perl5
 
 RUN fs_install_mcr R2019b
+
+
+
+# Create non-root user
+RUN useradd -m -s /bin/bash freesurfer
+
+# Set ownership of FreeSurfer directory
+# RUN chown -R freesurfer:freesurfer /usr/local/freesurfer
+
+# Switch to non-root user
+USER freesurfer
+
+# Set working directory
+WORKDIR /home/freesurfer
+
+# If you want the license file to be copied to the container, uncomment the line below.
+# COPY license.txt /usr/local/freesurfer/.license
+
 
 CMD ["/bin/bash"]
 

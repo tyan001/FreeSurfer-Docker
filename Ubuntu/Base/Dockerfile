@@ -53,6 +53,8 @@ ENV PATH=/usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/f
     MNI_PERL5LIB=/usr/local/freesurfer/mni/share/perl5 \
     PERL5LIB=/usr/local/freesurfer/mni/share/perl5
 
+
+    
 CMD ["/bin/bash"]
 
 
