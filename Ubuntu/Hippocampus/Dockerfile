@@ -53,6 +53,9 @@ ENV PATH=/usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/f
     MNI_PERL5LIB=/usr/local/freesurfer/mni/share/perl5 \
     PERL5LIB=/usr/local/freesurfer/mni/share/perl5
 
+# This is assuming the license file is in the same directory as the Dockerfile
+# COPY license.txt /usr/local/freesurfer/.license
+
 RUN fs_install_mcr R2019b
 
 # Create non-root user
