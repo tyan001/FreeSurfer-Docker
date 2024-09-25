@@ -56,19 +56,9 @@ ENV PATH=/usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/f
 # This is assuming the license file is in the same directory as the Dockerfile
 # COPY license.txt /usr/local/freesurfer/.license
 
-RUN fs_install_mcr R2019b
-
-# Create non-root user
-RUN useradd -m -s /bin/bash freesurfer
-
-# Set ownership of FreeSurfer directory
-# RUN chown -R freesurfer:freesurfer /usr/local/freesurfer
-
-# Switch to non-root user
-USER freesurfer
 
 # Set working directory
-WORKDIR /home/freesurfer
+WORKDIR /workspace
 
 # If you want the license file to be copied to the container, uncomment the line below.
 # COPY license.txt /usr/local/freesurfer/.license
