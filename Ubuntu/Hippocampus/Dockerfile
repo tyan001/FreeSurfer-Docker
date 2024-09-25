@@ -1,6 +1,5 @@
 FROM ubuntu:jammy
 
-
 # This Dockerfile is if you want to create a FS7 container image that includes the hippocampus segmentation tool as one image.
 # Meaning it will make a less cost-effective image if you do not normally used 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -52,10 +51,6 @@ ENV PATH=/usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/f
     MNI_DATAPATH=/usr/local/freesurfer/mni/data \
     MNI_PERL5LIB=/usr/local/freesurfer/mni/share/perl5 \
     PERL5LIB=/usr/local/freesurfer/mni/share/perl5
-
-# This is assuming the license file is in the same directory as the Dockerfile
-# COPY license.txt /usr/local/freesurfer/.license
-
 
 # Set working directory
 WORKDIR /workspace
