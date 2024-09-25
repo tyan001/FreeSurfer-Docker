@@ -53,7 +53,7 @@ ENV PATH=/usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/f
     PERL5LIB=/usr/local/freesurfer/mni/share/perl5
 
 # Set working directory
-WORKDIR /workspace
+WORKDIR /workspace/data
 
 # If you want the license file to be copied to the container, uncomment the line below.
 # COPY license.txt /usr/local/freesurfer/.license
