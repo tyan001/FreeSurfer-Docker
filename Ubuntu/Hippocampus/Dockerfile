@@ -52,13 +52,15 @@ ENV PATH=/usr/local/freesurfer/bin:/usr/local/freesurfer/fsfast/bin:/usr/local/f
     MNI_PERL5LIB=/usr/local/freesurfer/mni/share/perl5 \
     PERL5LIB=/usr/local/freesurfer/mni/share/perl5
 
+
+RUN fs_install_mcr R2019b
+
 # Set working directory
 WORKDIR /workspace/data
 
-RUN fs_install_mcr R2019b
 # If you want the license file to be copied to the container, uncomment the line below.
 # COPY license.txt /usr/local/freesurfer/.license
-COPY recon_all.py /workspace/data/recon_all.py
+# COPY recon_all.py /workspace/data/recon_all.py
 
 CMD ["/bin/bash"]
 
