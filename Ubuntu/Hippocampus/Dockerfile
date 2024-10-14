@@ -60,7 +60,8 @@ WORKDIR /workspace
 
 # If you want the license file to be copied to the container, uncomment the line below.
 # COPY license.txt /usr/local/freesurfer/.license
-# COPY recon_all.py /workspace/data/recon_all.py
+COPY recon_all.py /workspace
+COPY hippocampus.py /workspace
 
 CMD ["/bin/bash"]
 

@@ -7,6 +7,8 @@ ENV LANG=en_GB.UTF-8
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y    \
+    r-base          \
+    r-base-dev      \
     python3         \
     python3-pip     \
     wget            \
