@@ -19,6 +19,11 @@ RUN apt-get update && \
     libquadmath0    \
     libgtk2.0-0     \
     firefox         \
+    libosmesa6      \
+    libosmesa6-dev  \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    xvfb            \
     libgomp1     && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -30,14 +35,9 @@ RUN wget https://fsl.fmrib.ox.ac.uk/fsldownloads/fslconda/releases/fslinstaller.
 ENV PATH=$FSLDIR/bin:$PATH
 ENV FSLOUTPUTTYPE=NIFTI_GZ
 
-# Create non-root user
-RUN useradd -m -s /bin/bash fsl
-
-# Switch to non-root user
-USER fsl
 
 # Set working directory
-WORKDIR /home/fsl
+WORKDIR /workspace
 
 # Set the entrypoint to bash
 ENTRYPOINT ["/bin/bash"]
