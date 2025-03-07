@@ -174,8 +174,7 @@ def process_existing_subjects(root_dir, logger):
     results = []
     
     # Find existing FreeSurfer directories
-    fs_dirs = [p for p in Path(root_dir).glob("*/*/freesurfer741/*") 
-              if p.is_dir() and p.name != 'fsaverage']
+    fs_dirs = [p for p in Path(root_dir).glob("*/*/freesurfer741/*") if p.is_dir()]
     
     logger.info(f"Found {len(fs_dirs)} existing FreeSurfer directories")
     
